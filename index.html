@@ -1,363 +1,139 @@
-# index.html
-
-```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tracking SPPb</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Track Record Search</title>
 
 <style>
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
 body{
-  font-family:'Roboto',sans-serif;
-  background:#121212;
-  color:#202124;
-}
-
-.container{
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding-top:120px;
+  font-family:Arial;
+  text-align:center;
+  margin-top:80px;
 }
 
 .logo{
-  font-family:'Product Sans',sans-serif;
-  font-size:92px;
-  margin-bottom:28px;
-  user-select:none;
-}
-
-.logo span:nth-child(1){color:#4285F4;}
-.logo span:nth-child(2){color:#EA4335;}
-.logo span:nth-child(3){color:#FBBC05;}
-.logo span:nth-child(4){color:#4285F4;}
-.logo span:nth-child(5){color:#34A853;}
-.logo span:nth-child(6){color:#EA4335;}
-
-.search-wrapper{
-  width:100%;
-  display:flex;
-  justify-content:center;
+  font-size:50px;
+  font-weight:bold;
+  margin-bottom:30px;
+  color:#4285F4;
 }
 
 .search-box{
-  width:680px;
-  max-width:92%;
-  display:flex;
-  align-items:center;
-  border:1px solid #dfe1e5;
-  border-radius:999px;
-  padding:14px 20px;
-  transition:all .2s ease;
-  background:#fff;
-}
-
-.search-box:hover{
-  box-shadow:0 1px 6px rgba(32,33,36,.28);
-}
-
-.search-box:focus-within{
-  box-shadow:0 1px 6px rgba(32,33,36,.28);
-  border-color:rgba(223,225,229,0);
-}
-
-.search-icon{
-  font-size:20px;
-  margin-right:12px;
-  color:#9aa0a6;
-}
-
-.search-input{
-  flex:1;
-  border:none;
-  outline:none;
+  width:600px;
+  max-width:90%;
+  padding:15px;
+  border-radius:30px;
+  border:1px solid #ddd;
   font-size:18px;
 }
 
-.search-buttons{
-  margin-top:30px;
-  display:flex;
-  gap:14px;
+.result{
+  width:700px;
+  max-width:90%;
+  margin:20px auto;
+  text-align:left;
+  border-bottom:1px solid #eee;
+  padding-bottom:15px;
 }
 
-.btn{
-  background:#f8f9fa;
-  border:1px solid #f8f9fa;
-  border-radius:4px;
-  padding:11px 22px;
-  font-size:14px;
-  cursor:pointer;
-}
-
-.btn:hover{
-  border:1px solid #dadce0;
-  box-shadow:0 1px 1px rgba(0,0,0,.1);
-}
-
-.results{
-  width:760px;
-  max-width:92%;
-  margin-top:50px;
-  padding-bottom:50px;
-}
-
-.result-item{
-  margin-bottom:34px;
-}
-
-.result-url{
-  font-size:14px;
-  color:#202124;
-  margin-bottom:5px;
-}
-
-.result-title{
-  font-size:22px;
+.title{
   color:#1a0dab;
-  margin-bottom:6px;
-  cursor:pointer;
+  font-size:20px;
 }
 
-.result-title:hover{
-  text-decoration:underline;
-}
-
-.result-desc{
+.desc{
   color:#4d5156;
-  line-height:1.6;
-  font-size:14px;
-}
-
-.result-meta{
-  margin-top:8px;
-  font-size:13px;
-  color:#5f6368;
-}
-
-mark{
-  background:#fff59d;
-  padding:2px 4px;
-  border-radius:3px;
-}
-
-.stats{
-  width:760px;
-  max-width:92%;
-  margin-top:30px;
-  color:#70757a;
-  font-size:14px;
-}
-
-.no-result{
-  color:#5f6368;
-  margin-top:20px;
-}
-
-.footer{
-  width:100%;
-  border-top:1px solid #dadce0;
-  background:#f2f2f2;
-  padding:18px 30px;
-  color:#70757a;
-  margin-top:50px;
-  text-align:center;
-  font-size:14px;
-}
-
-@media(max-width:768px){
-
-  .logo{
-    font-size:62px;
-  }
-
-  .search-box{
-    width:94%;
-  }
-
-  .results,
-  .stats{
-    width:94%;
-  }
-
-  .result-title{
-    font-size:19px;
-  }
-
 }
 
 </style>
+
 </head>
+
 <body>
 
-<div class="container">
-
-  <div class="logo">
-    <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
-  </div>
-
-  <div class="search-wrapper">
-
-    <div class="search-box">
-      <div class="search-icon">🔍</div>
-
-      <input
-        type="text"
-        class="search-input"
-        id="search"
-        placeholder="Cari data track record..."
-        autocomplete="off"
-      >
-    </div>
-
-  </div>
-
-  <div class="search-buttons">
-    <button class="btn">Google Search</button>
-    <button class="btn">I'm Feeling Lucky</button>
-  </div>
-
-  <div class="stats" id="stats"></div>
-
-  <div class="results" id="results"></div>
-
+<div class="logo">
+  Track Record Search
 </div>
 
-<div class="footer">
-  Track Record Search Engine • Powered by Google Spreadsheet
-</div>
+<input
+  type="text"
+  id="search"
+  class="search-box"
+  placeholder="Cari data..."
+>
+
+<div id="results"></div>
 
 <script>
 
-const API_URL = "https://script.google.com/macros/s/AKfycbyp6FbYAKJqRnwqTIq_k6kQf9nVgsY1ACrbzDOxDYUiirvIk1Ho5hY6a5mzq_hnWEIZ/exec";
+const API_URL =
+"https://script.google.com/macros/s/AKfycbxKpb7C1qrQzZ16ZPh0QlzmHhHrAVTBHX8XzzbsdVoOeBwvU79ArrY_anSe-kiy0QTO/exec";
 
-const searchInput = document.getElementById("search");
-const resultsDiv = document.getElementById("results");
-const statsDiv = document.getElementById("stats");
+document
+.getElementById("search")
+.addEventListener("keyup", function(){
 
-let timer;
+    const keyword = this.value;
 
-searchInput.addEventListener("keyup", function(){
+    if(keyword.length < 1){
+        document.getElementById("results").innerHTML = "";
+        return;
+    }
 
-  clearTimeout(timer);
+    const oldScript = document.getElementById("jsonp");
 
-  const keyword = this.value.trim();
+    if(oldScript){
+      oldScript.remove();
+    }
 
-  if(keyword.length === 0){
-    resultsDiv.innerHTML = "";
-    statsDiv.innerHTML = "";
-    return;
-  }
+    const script = document.createElement("script");
 
-  timer = setTimeout(() => {
-    searchData(keyword);
-  }, 300);
+    script.id = "jsonp";
+
+    script.src =
+      API_URL +
+      "?q=" +
+      encodeURIComponent(keyword) +
+      "&callback=handleResults";
+
+    document.body.appendChild(script);
 
 });
 
-function searchData(keyword){
-
-  const oldScript = document.getElementById("jsonp");
-
-  if(oldScript){
-    oldScript.remove();
-  }
-
-  window.handleResults = function(data){
+function handleResults(data){
 
     let html = "";
 
-    if(data.length === 0){
-
-      statsDiv.innerHTML = "0 results";
-
-      resultsDiv.innerHTML = `
-        <div class="no-result">
-          Tidak ada hasil ditemukan untuk <b>${keyword}</b>
-        </div>
-      `;
-
-      return;
-    }
-
-    statsDiv.innerHTML = `${data.length} results ditemukan`;
-
     data.forEach(item => {
 
-      const highlightedTitle = highlightKeyword(item.no_sppb, keyword);
-      const highlightedDesc = highlightKeyword(item.uraian, keyword);
+        html += `
+          <div class="result">
 
-      html += `
+            <div class="title">
+              ${item.no_sppb}
+            </div>
 
-        <div class="result-item">
+            <div class="desc">
+              ${item.uraian}
+            </div>
 
-          <div class="result-url">
-            https://trackrecord.local/${item.no_sppb}
+            <small>
+              Nilai: ${item.nilai}
+              |
+              Status: ${item.status}
+              |
+              Tanggal: ${item.tanggal}
+            </small>
+
           </div>
-
-          <div class="result-title">
-            ${highlightedTitle}
-          </div>
-
-          <div class="result-desc">
-            ${highlightedDesc}
-          </div>
-
-          <div class="result-meta">
-            Status: ${item.status}
-            &nbsp;&nbsp;•&nbsp;&nbsp;
-            Nilai: ${formatNumber(item.nilai)}
-            &nbsp;&nbsp;•&nbsp;&nbsp;
-            Tanggal: ${item.tanggal}
-          </div>
-
-        </div>
-
-      `;
+        `;
 
     });
 
-    resultsDiv.innerHTML = html;
-
-  }
-
-  const script = document.createElement("script");
-
-  script.id = "jsonp";
-
-  script.src = API_URL +
-    "?q=" + encodeURIComponent(keyword) +
-    "&callback=handleResults";
-
-  document.body.appendChild(script);
-
-}
-
-function highlightKeyword(text, keyword){
-
-  if(!keyword) return text;
-
-  const regex = new RegExp(`(${keyword})`, 'gi');
-
-  return text.replace(regex, '<mark>$1</mark>');
-
-}
-
-function formatNumber(number){
-
-  return new Intl.NumberFormat('id-ID').format(number);
+    document.getElementById("results").innerHTML = html;
 
 }
 
@@ -365,89 +141,3 @@ function formatNumber(number){
 
 </body>
 </html>
-```
-
-# Cara Menggunakan
-
-1. Buka file `index.html` di GitHub
-2. Klik icon pensil ✏️
-3. Hapus semua isi lama
-4. Paste seluruh kode di atas
-5. Klik `Commit changes`
-6. Tunggu 30 detik
-7. Refresh website dengan `CTRL + F5`
-
-# Fitur yang Sudah Ada
-
-* Tampilan sangat mirip Google
-* Search realtime
-* Highlight keyword
-* Responsive mobile
-* Statistik hasil pencarian
-* Efek shadow Google
-* Debounce search (lebih cepat)
-* JSONP API support
-* Format angka otomatis
-* Modern UI
-
-# Desain Modern Profesional Tambahan
-
-Tambahkan style berikut untuk membuat tampilannya lebih premium:
-
-```css
-body{
-  background:linear-gradient(to bottom,#ffffff,#f5f7fb);
-}
-
-.search-box{
-  backdrop-filter:blur(10px);
-  background:rgba(255,255,255,.95);
-}
-
-.result-item{
-  background:#fff;
-  border-radius:18px;
-  padding:24px;
-  box-shadow:0 4px 20px rgba(0,0,0,.05);
-  transition:all .2s ease;
-}
-
-.result-item:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 28px rgba(0,0,0,.08);
-}
-
-.result-title{
-  font-weight:500;
-}
-
-.footer{
-  margin-top:80px;
-}
-```
-
-# Fitur Tampilan Profesional
-
-* Card result modern
-* Shadow premium
-* Gradient background
-* Hover animation
-* Glassmorphism effect
-* Mobile responsive
-* Typography modern
-* Layout clean enterprise style
-
-# Upgrade Berikutnya
-
-Bisa ditambahkan:
-
-* Dark mode
-* Autocomplete suggestion
-* Voice search
-* Ranking AI
-* Pagination
-* Login admin
-* Export PDF/Excel
-* Detail popup
-* Filter status/tanggal
-* Search typo tolerant
