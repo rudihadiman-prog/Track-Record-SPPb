@@ -1,137 +1,141 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Track Record Search</title>
+<title>Track Record Search</title>
 
-  <style>
+<style>
 
-    body{
-      font-family: Arial;
-      background:#fff;
-      text-align:center;
-      margin-top:80px;
-    }
+body{
+  font-family:Arial;
+  text-align:center;
+  margin-top:80px;
+}
 
-    .logo{
-      font-size:50px;
-      font-weight:bold;
-      margin-bottom:30px;
-      color:#4285F4;
-    }
+.logo{
+  font-size:50px;
+  font-weight:bold;
+  margin-bottom:30px;
+  color:#4285F4;
+}
 
-    .search-box{
-      width:600px;
-      max-width:90%;
-      padding:15px;
-      border-radius:30px;
-      border:1px solid #ddd;
-      font-size:18px;
-      outline:none;
-      box-shadow:0 1px 6px rgba(32,33,36,.28);
-    }
+.search-box{
+  width:600px;
+  max-width:90%;
+  padding:15px;
+  border-radius:30px;
+  border:1px solid #ddd;
+  font-size:18px;
+}
 
-    .result{
-      width:700px;
-      max-width:90%;
-      margin:20px auto;
-      text-align:left;
-      border-bottom:1px solid #eee;
-      padding-bottom:15px;
-    }
+.result{
+  width:700px;
+  max-width:90%;
+  margin:20px auto;
+  text-align:left;
+  border-bottom:1px solid #eee;
+  padding-bottom:15px;
+}
 
-    .title{
-      font-size:20px;
-      color:#1a0dab;
-      margin-bottom:5px;
-    }
+.title{
+  color:#1a0dab;
+  font-size:20px;
+}
 
-    .desc{
-      color:#4d5156;
-      margin-bottom:10px;
-    }
+.desc{
+  color:#4d5156;
+}
 
-  </style>
+</style>
+
 </head>
 
 <body>
 
-  <div class="logo">
-    Track Record Search
-  </div>
+<div class="logo">
+  Track Record Search
+</div>
 
-  <input
-    type="text"
-    id="search"
-    class="search-box"
-    placeholder="Ketik pencarian..."
-  >
+<input
+  type="text"
+  id="search"
+  class="search-box"
+  placeholder="Cari data..."
+>
 
-  <div id="results"></div>
+<div id="results"></div>
 
 <script>
 
-const API_URL = "https://script.google.com/macros/s/AKfycbyp6FbYAKJqRnwqTIq_k6kQf9nVgsY1ACrbzDOxDYUiirvIk1Ho5hY6a5mzq_hnWEIZ/exec";
+const API_URL =
+"https://script.google.com/macros/s/AKfycbyp6FbYAKJqRnwqTIq_k6kQf9nVgsY1ACrbzDOxDYUiirvIk1Ho5hY6a5mzq_hnWEIZ/exec";
 
-const searchInput = document.getElementById("search");
-
-searchInput.addEventListener("keyup", async function () {
+document
+.getElementById("search")
+.addEventListener("keyup", function(){
 
     const keyword = this.value;
 
-    if(keyword.length === 0){
+    if(keyword.length < 1){
         document.getElementById("results").innerHTML = "";
         return;
     }
 
-    try {
+    const oldScript = document.getElementById("jsonp");
 
-        const response = await fetch(API_URL + "?q=" + encodeURIComponent(keyword));
-
-        const data = await response.json();
-
-        let html = "";
-
-        data.forEach(item => {
-
-            html += `
-                <div class="result">
-
-                    <div class="title">
-                        ${item.no_sppb}
-                    </div>
-
-                    <div class="desc">
-                        ${item.uraian}
-                    </div>
-
-                    <small>
-                        Nilai: ${item.nilai}
-                        |
-                        Status: ${item.status}
-                        |
-                        Tanggal: ${item.tanggal}
-                    </small>
-
-                </div>
-            `;
-
-        });
-
-        document.getElementById("results").innerHTML = html;
-
-    } catch(error){
-
-        console.log(error);
-
-        document.getElementById("results").innerHTML =
-          "Terjadi error koneksi API";
-
+    if(oldScript){
+      oldScript.remove();
     }
 
+    const script = document.createElement("script");
+
+    script.id = "jsonp";
+
+    script.src =
+      API_URL +
+      "?q=" +
+      encodeURIComponent(keyword) +
+      "&callback=handleResults";
+
+    document.body.appendChild(script);
+
 });
+
+function handleResults(data){
+
+    let html = "";
+
+    data.forEach(item => {
+
+        html += `
+          <div class="result">
+
+            <div class="title">
+              ${item.no_sppb}
+            </div>
+
+            <div class="desc">
+              ${item.uraian}
+            </div>
+
+            <small>
+              Nilai: ${item.nilai}
+              |
+              Status: ${item.status}
+              |
+              Tanggal: ${item.tanggal}
+            </small>
+
+          </div>
+        `;
+
+    });
+
+    document.getElementById("results").innerHTML = html;
+
+}
 
 </script>
 
