@@ -1,51 +1,225 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Tracking SPPb</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
 body{
-  font-family:Arial;
+  font-family:'Inter',sans-serif;
+  background:
+    linear-gradient(
+      180deg,
+      #f4f7fb 0%,
+      #eef3f9 100%
+    );
+
+  min-height:100vh;
+  color:#1f2937;
+}
+
+.container{
+  width:100%;
+  max-width:1000px;
+  margin:auto;
+  padding:70px 20px 40px;
+}
+
+.header{
   text-align:center;
-  margin-top:80px;
+  margin-bottom:40px;
 }
 
 .logo{
-  font-size:30px;
-  font-weight:bold;
-  margin-bottom:30px;
+  font-size:42px;
+  font-weight:700;
   color:#0B3040;
+  margin-bottom:10px;
+  letter-spacing:-1px;
+}
+
+.subtitle{
+  color:#6b7280;
+  font-size:16px;
+}
+
+.search-wrapper{
+  display:flex;
+  justify-content:center;
+  margin-bottom:35px;
 }
 
 .search-box{
-  width:600px;
-  max-width:90%;
-  padding:15px;
-  border-radius:30px;
-  border:1px solid #ddd;
-  font-size:18px;
+  width:100%;
+  max-width:760px;
+  background:#fff;
+  border:1px solid #dbe3ec;
+  border-radius:20px;
+  padding:16px 22px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.05);
+
+  transition:.25s;
+}
+
+.search-box:focus-within{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 18px 40px rgba(15,23,42,.10);
+
+  border-color:#0B3040;
+}
+
+.search-icon{
+  font-size:20px;
+  color:#94a3b8;
+}
+
+.search-input{
+  flex:1;
+  border:none;
+  outline:none;
+  font-size:17px;
+  background:transparent;
+  color:#111827;
+}
+
+.search-input::placeholder{
+  color:#94a3b8;
+}
+
+.stats{
+  margin-bottom:20px;
+  color:#64748b;
+  font-size:14px;
 }
 
 .result{
-  width:700px;
-  max-width:90%;
-  margin:20px auto;
-  text-align:left;
-  border-bottom:1px solid #eee;
-  padding-bottom:15px;
+  background:#fff;
+  border-radius:20px;
+  padding:24px;
+  margin-bottom:20px;
+
+  border:1px solid #e5e7eb;
+
+  box-shadow:
+    0 4px 20px rgba(15,23,42,.04);
+
+  transition:.25s;
+}
+
+.result:hover{
+  transform:translateY(-3px);
+
+  box-shadow:
+    0 14px 35px rgba(15,23,42,.08);
+}
+
+.result-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+  flex-wrap:wrap;
 }
 
 .title{
-  color:#1a0dab;
+  color:#0B57D0;
   font-size:20px;
+  font-weight:600;
+  word-break:break-word;
+}
+
+.badge{
+  padding:7px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:600;
+  background:#e0f2fe;
+  color:#0369a1;
 }
 
 .desc{
-  color:#4d5156;
+  color:#4b5563;
+  line-height:1.7;
+  margin-bottom:16px;
+}
+
+.meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.meta-item{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:12px;
+  padding:10px 14px;
+  font-size:13px;
+  color:#475569;
+}
+
+.empty{
+  text-align:center;
+  padding:50px 20px;
+  color:#64748b;
+}
+
+mark{
+  background:#fff3b0;
+  padding:2px 4px;
+  border-radius:4px;
+}
+
+.footer{
+  text-align:center;
+  margin-top:50px;
+  color:#94a3b8;
+  font-size:13px;
+}
+
+@media(max-width:768px){
+
+  .logo{
+    font-size:34px;
+  }
+
+  .search-box{
+    border-radius:16px;
+    padding:14px 18px;
+  }
+
+  .title{
+    font-size:18px;
+  }
+
+  .result{
+    padding:20px;
+  }
+
 }
 
 </style>
@@ -54,34 +228,87 @@ body{
 
 <body>
 
-<div class="logo">
-  Tracking SPPb
+<div class="container">
+
+  <div class="header">
+
+    <div class="logo">
+      Tracking SPPb
+    </div>
+
+    <div class="subtitle">
+      Sistem pencarian dokumen & tracking data SPPb
+    </div>
+
+  </div>
+
+  <div class="search-wrapper">
+
+    <div class="search-box">
+
+      <div class="search-icon">
+        🔍
+      </div>
+
+      <input
+        type="text"
+        id="search"
+        class="search-input"
+        placeholder="Cari nomor SPPb, uraian, status..."
+        autocomplete="off"
+      >
+
+    </div>
+
+  </div>
+
+  <div id="stats" class="stats"></div>
+
+  <div id="results"></div>
+
+  <div class="footer">
+    Tracking SPPb • Powered by Google Spreadsheet
+  </div>
+
 </div>
-
-<input
-  type="text"
-  id="search"
-  class="search-box"
-  placeholder="Cari data..."
->
-
-<div id="results"></div>
 
 <script>
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbxKpb7C1qrQzZ16ZPh0QlzmHhHrAVTBHX8XzzbsdVoOeBwvU79ArrY_anSe-kiy0QTO/exec";
 
-document
-.getElementById("search")
-.addEventListener("keyup", function(){
+const searchInput = document.getElementById("search");
+const resultsDiv = document.getElementById("results");
+const statsDiv = document.getElementById("stats");
 
-    const keyword = this.value;
+let debounceTimer;
+
+searchInput.addEventListener("keyup", function(){
+
+    clearTimeout(debounceTimer);
+
+    const keyword = this.value.trim();
 
     if(keyword.length < 1){
-        document.getElementById("results").innerHTML = "";
+
+        resultsDiv.innerHTML = `
+          <div class="empty">
+            Mulai ketik untuk mencari data...
+          </div>
+        `;
+
+        statsDiv.innerHTML = "";
+
         return;
     }
+
+    debounceTimer = setTimeout(() => {
+      searchData(keyword);
+    }, 300);
+
+});
+
+function searchData(keyword){
 
     const oldScript = document.getElementById("jsonp");
 
@@ -101,43 +328,106 @@ document
 
     document.body.appendChild(script);
 
-});
+}
 
 function handleResults(data){
 
+    const keyword = searchInput.value.trim();
+
     let html = "";
 
+    if(data.length === 0){
+
+        statsDiv.innerHTML = "0 hasil ditemukan";
+
+        resultsDiv.innerHTML = `
+          <div class="empty">
+            Tidak ada data ditemukan
+          </div>
+        `;
+
+        return;
+    }
+
+    statsDiv.innerHTML =
+      `${data.length} hasil ditemukan`;
+
     data.forEach(item => {
+
+        const title =
+          highlight(item.no_sppb, keyword);
+
+        const desc =
+          highlight(item.uraian, keyword);
 
         html += `
           <div class="result">
 
-            <div class="title">
-              ${item.no_sppb}
+            <div class="result-top">
+
+              <div class="title">
+                ${title}
+              </div>
+
+              <div class="badge">
+                ${item.status}
+              </div>
+
             </div>
 
             <div class="desc">
-              ${item.uraian}
+              ${desc}
             </div>
 
-            <small>
-              Nilai: ${item.nilai}
-              |
-              Status: ${item.status}
-              |
-              Tanggal: ${item.tanggal}
-            </small>
+            <div class="meta">
+
+              <div class="meta-item">
+                💰 Nilai :
+                ${formatNumber(item.nilai)}
+              </div>
+
+              <div class="meta-item">
+                📅 ${item.tanggal}
+              </div>
+
+            </div>
 
           </div>
         `;
 
     });
 
-    document.getElementById("results").innerHTML = html;
+    resultsDiv.innerHTML = html;
 
 }
+
+function highlight(text, keyword){
+
+    if(!keyword) return text;
+
+    const regex =
+      new RegExp(`(${keyword})`, 'gi');
+
+    return text.replace(regex, '<mark>$1</mark>');
+
+}
+
+function formatNumber(number){
+
+    return new Intl.NumberFormat(
+      'id-ID'
+    ).format(number);
+
+}
+
+resultsDiv.innerHTML = `
+  <div class="empty">
+    Mulai ketik untuk mencari data...
+  </div>
+`;
 
 </script>
 
 </body>
 </html>
+```
