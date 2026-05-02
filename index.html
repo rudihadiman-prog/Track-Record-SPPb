@@ -1,26 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Search Engine</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Track Record Search</title>
 
   <style>
 
     body{
       font-family: Arial;
-      text-align:center;
-      margin-top:100px;
       background:#fff;
+      text-align:center;
+      margin-top:80px;
     }
 
     .logo{
-      font-size:60px;
+      font-size:50px;
       font-weight:bold;
-      color:#4285F4;
       margin-bottom:30px;
+      color:#4285F4;
     }
 
     .search-box{
       width:600px;
+      max-width:90%;
       padding:15px;
       border-radius:30px;
       border:1px solid #ddd;
@@ -31,20 +35,22 @@
 
     .result{
       width:700px;
+      max-width:90%;
       margin:20px auto;
       text-align:left;
-      padding:15px;
       border-bottom:1px solid #eee;
+      padding-bottom:15px;
     }
 
     .title{
-      color:#1a0dab;
       font-size:20px;
+      color:#1a0dab;
       margin-bottom:5px;
     }
 
     .desc{
       color:#4d5156;
+      margin-bottom:10px;
     }
 
   </style>
@@ -52,65 +58,78 @@
 
 <body>
 
-<div class="logo">
-  Search
-</div>
+  <div class="logo">
+    Track Record Search
+  </div>
 
-<input
-  type="text"
-  class="search-box"
-  id="search"
-  placeholder="Cari data..."
->
+  <input
+    type="text"
+    id="search"
+    class="search-box"
+    placeholder="Ketik pencarian..."
+  >
 
-<div id="results"></div>
+  <div id="results"></div>
 
 <script>
 
-const API_URL = "https://script.google.com/macros/s/AKfycbxKpb7C1qrQzZ16ZPh0QlzmHhHrAVTBHX8XzzbsdVoOeBwvU79ArrY_anSe-kiy0QTO/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbyp6FbYAKJqRnwqTIq_k6kQf9nVgsY1ACrbzDOxDYUiirvIk1Ho5hY6a5mzq_hnWEIZ/exec";
 
-document
-.getElementById("search")
-.addEventListener("keyup", async function(){
+const searchInput = document.getElementById("search");
 
-  const q = this.value;
+searchInput.addEventListener("keyup", async function () {
 
-  if(q.length < 1){
-    document.getElementById("results").innerHTML = "";
-    return;
-  }
+    const keyword = this.value;
 
-  const res = await fetch(API_URL + "?q=" + encodeURIComponent(q));
+    if(keyword.length === 0){
+        document.getElementById("results").innerHTML = "";
+        return;
+    }
 
-  const data = await res.json();
+    try {
 
-  let html = "";
+        const response = await fetch(API_URL + "?q=" + encodeURIComponent(keyword));
 
-  data.forEach(item => {
+        const data = await response.json();
 
-    html += `
-      <div class="result">
-        <div class="title">${item.no_sppb}</div>
+        let html = "";
 
-        <div class="desc">
-          ${item.uraian}
-        </div>
+        data.forEach(item => {
 
-        <br>
+            html += `
+                <div class="result">
 
-        <small>
-          Nilai: ${item.nilai}
-          |
-          Status: ${item.status}
-          |
-          Tanggal: ${item.tanggal}
-        </small>
-      </div>
-    `;
+                    <div class="title">
+                        ${item.no_sppb}
+                    </div>
 
-  });
+                    <div class="desc">
+                        ${item.uraian}
+                    </div>
 
-  document.getElementById("results").innerHTML = html;
+                    <small>
+                        Nilai: ${item.nilai}
+                        |
+                        Status: ${item.status}
+                        |
+                        Tanggal: ${item.tanggal}
+                    </small>
+
+                </div>
+            `;
+
+        });
+
+        document.getElementById("results").innerHTML = html;
+
+    } catch(error){
+
+        console.log(error);
+
+        document.getElementById("results").innerHTML =
+          "Terjadi error koneksi API";
+
+    }
 
 });
 
