@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Engine</title>
+
+  <style>
+
+    body{
+      font-family: Arial;
+      text-align:center;
+      margin-top:100px;
+      background:#fff;
+    }
+
+    .logo{
+      font-size:60px;
+      font-weight:bold;
+      color:#4285F4;
+      margin-bottom:30px;
+    }
+
+    .search-box{
+      width:600px;
+      padding:15px;
+      border-radius:30px;
+      border:1px solid #ddd;
+      font-size:18px;
+      outline:none;
+      box-shadow:0 1px 6px rgba(32,33,36,.28);
+    }
+
+    .result{
+      width:700px;
+      margin:20px auto;
+      text-align:left;
+      padding:15px;
+      border-bottom:1px solid #eee;
+    }
+
+    .title{
+      color:#1a0dab;
+      font-size:20px;
+      margin-bottom:5px;
+    }
+
+    .desc{
+      color:#4d5156;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="logo">
+  Search
+</div>
+
+<input
+  type="text"
+  class="search-box"
+  id="search"
+  placeholder="Cari data..."
+>
+
+<div id="results"></div>
+
+<script>
+
+const API_URL = "https://script.google.com/macros/s/AKFYxxxxxxxx/exec";
+
+document
+.getElementById("search")
+.addEventListener("keyup", async function(){
+
+  const q = this.value;
+
+  if(q.length < 1){
+    document.getElementById("results").innerHTML = "";
+    return;
+  }
+
+  const res = await fetch(API_URL + "?q=" + encodeURIComponent(q));
+
+  const data = await res.json();
+
+  let html = "";
+
+  data.forEach(item => {
+
+    html += `
+      <div class="result">
+        <div class="title">${item.no_sppb}</div>
+
+        <div class="desc">
+          ${item.uraian}
+        </div>
+
+        <br>
+
+        <small>
+          Nilai: ${item.nilai}
+          |
+          Status: ${item.status}
+          |
+          Tanggal: ${item.tanggal}
+        </small>
+      </div>
+    `;
+
+  });
+
+  document.getElementById("results").innerHTML = html;
+
+});
+
+</script>
+
+</body>
+</html>
