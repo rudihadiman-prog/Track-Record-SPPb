@@ -10,21 +10,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
   --primary:#0B3040;
   --blue:#0B57D0;
-  --bg:#f3f7fb;
+  --bg:#f4f7fb;
   --card:#ffffff;
-  --border:#e2e8f0;
+  --border:#dbe3ec;
   --text:#1e293b;
   --muted:#64748b;
-  --success-bg:#dcfce7;
-  --success-text:#15803d;
-  --shadow:0 10px 30px rgba(15,23,42,.06);
 }
 
 *{
@@ -33,235 +30,191 @@
   box-sizing:border-box;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 body{
   font-family:'Inter',sans-serif;
-  background:linear-gradient(
-    180deg,
-    #f7f9fc 0%,
-    #eef3f8 100%
-  );
-  min-height:100vh;
+  background:var(--bg);
   color:var(--text);
 }
 
 .container{
-  width:100%;
-  max-width:1100px;
+  max-width:1000px;
   margin:auto;
-  padding:70px 20px 50px;
+  padding:40px 16px;
 }
 
 .header{
   text-align:center;
-  margin-bottom:45px;
+  margin-bottom:30px;
 }
 
 .logo{
-  font-size:52px;
+  font-size:42px;
   font-weight:700;
   color:var(--primary);
-  letter-spacing:-2px;
-  margin-bottom:12px;
 }
 
 .subtitle{
+  margin-top:8px;
   color:var(--muted);
-  font-size:18px;
-}
-
-.search-wrapper{
-  display:flex;
-  justify-content:center;
-  margin-bottom:25px;
+  font-size:15px;
 }
 
 .search-box{
-  width:100%;
-  max-width:820px;
-  background:var(--card);
+  background:#fff;
   border:1px solid var(--border);
-  border-radius:22px;
-  padding:18px 24px;
+  border-radius:16px;
   display:flex;
   align-items:center;
-  gap:14px;
-  transition:.25s ease;
-  box-shadow:var(--shadow);
-}
-
-.search-box:focus-within{
-  transform:translateY(-2px);
-  border-color:var(--blue);
-  box-shadow:
-    0 20px 45px rgba(11,87,208,.12);
-}
-
-.search-icon{
-  font-size:22px;
-  color:#94a3b8;
+  gap:12px;
+  padding:14px 16px;
+  margin-bottom:18px;
 }
 
 .search-input{
-  flex:1;
+  width:100%;
   border:none;
   outline:none;
   background:transparent;
-  font-size:17px;
-  color:#111827;
-}
-
-.search-input::placeholder{
-  color:#94a3b8;
+  font-size:15px;
 }
 
 .loading{
-  width:24px;
-  height:24px;
-  border:3px solid #dbeafe;
-  border-top:3px solid var(--blue);
+  width:18px;
+  height:18px;
+  border:2px solid #cbd5e1;
+  border-top:2px solid var(--blue);
   border-radius:50%;
   animation:spin 1s linear infinite;
   display:none;
 }
 
 @keyframes spin{
-  100%{
+  to{
     transform:rotate(360deg);
   }
 }
 
 .stats{
-  margin:15px 5px 25px;
+  margin-bottom:15px;
   color:var(--muted);
-  font-size:14px;
+  font-size:13px;
 }
 
 .result{
   background:var(--card);
-  border-radius:22px;
-  padding:26px;
-  margin-bottom:22px;
   border:1px solid var(--border);
-  transition:.25s ease;
-  box-shadow:
-    0 5px 20px rgba(15,23,42,.04);
-}
-
-.result:hover{
-  transform:translateY(-3px);
-  box-shadow:
-    0 20px 40px rgba(15,23,42,.08);
+  border-radius:16px;
+  padding:18px;
+  margin-bottom:14px;
 }
 
 .result-top{
   display:flex;
-  align-items:flex-start;
   justify-content:space-between;
-  gap:15px;
-  margin-bottom:14px;
+  align-items:flex-start;
+  gap:12px;
   flex-wrap:wrap;
+  margin-bottom:12px;
 }
 
 .title{
-  font-size:21px;
+  font-size:18px;
   font-weight:700;
   color:var(--blue);
-  word-break:break-word;
 }
 
 .badge{
-  background:var(--success-bg);
-  color:var(--success-text);
-  padding:8px 14px;
+  background:#dcfce7;
+  color:#15803d;
+  padding:6px 12px;
   border-radius:999px;
   font-size:12px;
   font-weight:700;
-  white-space:nowrap;
 }
 
 .desc{
   color:#475569;
-  line-height:1.8;
-  margin-bottom:18px;
-  font-size:15px;
+  line-height:1.7;
+  margin-bottom:14px;
 }
 
 .meta{
   display:flex;
   flex-wrap:wrap;
-  gap:12px;
+  gap:10px;
+  margin-bottom:15px;
 }
 
 .meta-item{
   background:#f8fafc;
   border:1px solid var(--border);
-  border-radius:14px;
-  padding:12px 15px;
+  border-radius:10px;
+  padding:10px 12px;
   font-size:13px;
-  color:#475569;
 }
 
-.empty{
+.pdf-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:#dc2626;
+  color:#fff;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.pdf-link:hover{
+  opacity:.9;
+}
+
+.pdf-preview{
+  width:100%;
+  height:500px;
+  border:none;
+  border-radius:12px;
+  margin-top:15px;
+  background:#fff;
+}
+
+.empty,
+.error{
   text-align:center;
-  padding:70px 20px;
+  padding:50px 20px;
   color:var(--muted);
-  font-size:17px;
 }
 
-mark{
-  background:#fef08a;
-  padding:2px 4px;
-  border-radius:5px;
+.error{
+  color:#dc2626;
 }
 
 .footer{
   text-align:center;
-  margin-top:55px;
+  margin-top:40px;
   color:#94a3b8;
-  font-size:13px;
+  font-size:12px;
 }
 
-.error{
-  background:#fee2e2;
-  color:#b91c1c;
-  padding:16px;
-  border-radius:14px;
-  text-align:center;
+mark{
+  background:#fde68a;
+  padding:2px 4px;
+  border-radius:4px;
 }
 
 @media(max-width:768px){
 
-  .container{
-    padding-top:45px;
-  }
-
   .logo{
-    font-size:38px;
-  }
-
-  .subtitle{
-    font-size:15px;
-  }
-
-  .search-box{
-    border-radius:18px;
-    padding:15px 18px;
-  }
-
-  .search-input{
-    font-size:15px;
+    font-size:32px;
   }
 
   .result{
-    padding:20px;
+    padding:15px;
   }
 
-  .title{
-    font-size:18px;
+  .pdf-preview{
+    height:350px;
   }
 
 }
@@ -286,25 +239,19 @@ mark{
 
   </div>
 
-  <div class="search-wrapper">
+  <div class="search-box">
 
-    <div class="search-box">
+    <div>🔍</div>
 
-      <div class="search-icon">
-        🔍
-      </div>
+    <input
+      type="text"
+      id="search"
+      class="search-input"
+      placeholder="Cari nomor SPPb, uraian, status..."
+      autocomplete="off"
+    >
 
-      <input
-        type="text"
-        id="search"
-        class="search-input"
-        placeholder="Cari nomor SPPb, uraian, status..."
-        autocomplete="off"
-      >
-
-      <div class="loading" id="loading"></div>
-
-    </div>
+    <div class="loading" id="loading"></div>
 
   </div>
 
@@ -323,214 +270,250 @@ mark{
 const API_URL =
 "https://script.google.com/macros/s/AKfycbxKpb7C1qrQzZ16ZPh0QlzmHhHrAVTBHX8XzzbsdVoOeBwvU79ArrY_anSe-kiy0QTO/exec";
 
-const searchInput = document.getElementById("search");
-const resultsDiv = document.getElementById("results");
-const statsDiv = document.getElementById("stats");
-const loading = document.getElementById("loading");
+const searchInput =
+document.getElementById("search");
 
-let debounceTimer;
+const resultsDiv =
+document.getElementById("results");
 
-searchInput.addEventListener("keyup", function(){
+const statsDiv =
+document.getElementById("stats");
 
-    clearTimeout(debounceTimer);
+const loading =
+document.getElementById("loading");
 
-    const keyword = this.value.trim();
+let debounce;
 
-    if(keyword.length < 1){
+searchInput.addEventListener("input", () => {
 
-        statsDiv.innerHTML = "";
+  clearTimeout(debounce);
 
-        resultsDiv.innerHTML = `
-          <div class="empty">
-            Mulai ketik untuk mencari data...
-          </div>
-        `;
+  const keyword =
+  searchInput.value.trim();
 
-        return;
-    }
+  if(!keyword){
 
-    debounceTimer = setTimeout(() => {
-      searchData(keyword);
-    }, 400);
+    statsDiv.innerHTML = "";
+
+    resultsDiv.innerHTML = `
+      <div class="empty">
+        Mulai ketik untuk mencari data...
+      </div>
+    `;
+
+    return;
+  }
+
+  debounce = setTimeout(() => {
+    searchData(keyword);
+  }, 300);
 
 });
 
 function searchData(keyword){
 
-    loading.style.display = "block";
+  loading.style.display = "block";
 
-    const oldScript =
-      document.getElementById("jsonp");
+  const oldScript =
+  document.getElementById("jsonp");
 
-    if(oldScript){
-      oldScript.remove();
-    }
+  if(oldScript){
+    oldScript.remove();
+  }
 
-    const script =
-      document.createElement("script");
+  const script =
+  document.createElement("script");
 
-    script.id = "jsonp";
+  script.id = "jsonp";
 
-    script.src =
-      API_URL +
-      "?q=" +
-      encodeURIComponent(keyword) +
-      "&callback=handleResults";
+  script.src =
+    API_URL +
+    "?q=" +
+    encodeURIComponent(keyword) +
+    "&callback=handleResults";
 
-    script.onerror = function(){
+  script.onerror = () => {
 
-      loading.style.display = "none";
+    loading.style.display = "none";
 
-      resultsDiv.innerHTML = `
-        <div class="error">
-          Gagal mengambil data dari server
-        </div>
-      `;
+    resultsDiv.innerHTML = `
+      <div class="error">
+        Gagal mengambil data dari server
+      </div>
+    `;
 
-    };
+  };
 
-    document.body.appendChild(script);
+  document.body.appendChild(script);
 
 }
 
 function handleResults(data){
 
-    loading.style.display = "none";
+  loading.style.display = "none";
 
-    const keyword =
-      searchInput.value.trim();
+  const keyword =
+  searchInput.value.trim();
 
-    let html = "";
-
-    if(!Array.isArray(data) || data.length === 0){
-
-        statsDiv.innerHTML =
-          "0 hasil ditemukan";
-
-        resultsDiv.innerHTML = `
-          <div class="empty">
-            Tidak ada data ditemukan
-          </div>
-        `;
-
-        return;
-    }
+  if(!Array.isArray(data) || !data.length){
 
     statsDiv.innerHTML =
-      `${data.length} hasil ditemukan`;
+    "0 hasil ditemukan";
 
-    data.forEach(item => {
+    resultsDiv.innerHTML = `
+      <div class="empty">
+        Tidak ada data ditemukan
+      </div>
+    `;
 
-        const title =
-          highlight(item.no_sppb || "-", keyword);
+    return;
+  }
 
-        const desc =
-          highlight(item.uraian || "-", keyword);
+  statsDiv.innerHTML =
+  `${data.length} hasil ditemukan`;
 
-        const status =
-          item.status || "Tidak ada status";
+  resultsDiv.innerHTML =
+  data.map(item =>
+    createCard(item, keyword)
+  ).join("");
 
-        const nilai =
-          item.nilai || 0;
+}
 
-        const tanggal =
-          item.tanggal || "-";
+function createCard(item, keyword){
 
-        html += `
-          <div class="result">
+  const no_sppb =
+  highlight(item.no_sppb || "-", keyword);
 
-            <div class="result-top">
+  const uraian =
+  highlight(item.uraian || "-", keyword);
 
-              <div class="title">
-                ${title}
-              </div>
+  const status =
+  item.status || "Tidak Ada Status";
 
-              <div class="badge">
-                ${status}
-              </div>
+  const nilai =
+  formatNumber(item.nilai || 0);
 
-            </div>
+  const tanggal =
+  formatDate(item.tanggal);
 
-            <div class="desc">
-              ${desc}
-            </div>
+  // LINK PDF DARI SPREADSHEET
+  const pdf =
+  item.pdf_url || "";
 
-            <div class="meta">
+  return `
 
-              <div class="meta-item">
-                💰 Nilai :
-                <strong>
-                  Rp ${formatNumber(nilai)}
-                </strong>
-              </div>
+    <div class="result">
 
-              <div class="meta-item">
-                📅 ${formatDate(tanggal)}
-              </div>
+      <div class="result-top">
 
-            </div>
+        <div class="title">
+          ${no_sppb}
+        </div>
 
-          </div>
-        `;
+        <div class="badge">
+          ${status}
+        </div>
 
-    });
+      </div>
 
-    resultsDiv.innerHTML = html;
+      <div class="desc">
+        ${uraian}
+      </div>
+
+      <div class="meta">
+
+        <div class="meta-item">
+          💰 Rp ${nilai}
+        </div>
+
+        <div class="meta-item">
+          📅 ${tanggal}
+        </div>
+
+      </div>
+
+      ${
+        pdf
+        ?
+        `
+          <a
+            href="${pdf}"
+            target="_blank"
+            class="pdf-link"
+          >
+            📄 Buka Lampiran PDF
+          </a>
+
+          <iframe
+            src="${pdf}"
+            class="pdf-preview">
+          </iframe>
+        `
+        :
+        ""
+      }
+
+    </div>
+
+  `;
 
 }
 
 function highlight(text, keyword){
 
-    if(!keyword) return text;
+  if(!keyword) return text;
 
-    const regex =
-      new RegExp(`(${escapeRegex(keyword)})`, "gi");
+  const regex =
+  new RegExp(
+    `(${escapeRegex(keyword)})`,
+    "gi"
+  );
 
-    return text.replace(
-      regex,
-      "<mark>$1</mark>"
-    );
+  return text.replace(
+    regex,
+    "<mark>$1</mark>"
+  );
 
 }
 
 function escapeRegex(text){
 
-    return text.replace(
-      /[.*+?^${}()|[\]\\]/g,
-      "\\$&"
-    );
+  return text.replace(
+    /[.*+?^${}()|[\]\\]/g,
+    "\\$&"
+  );
 
 }
 
 function formatNumber(number){
 
-    return new Intl.NumberFormat(
-      "id-ID"
-    ).format(Number(number));
+  return new Intl.NumberFormat(
+    "id-ID"
+  ).format(Number(number));
 
 }
 
 function formatDate(dateString){
 
-    if(!dateString) return "-";
+  if(!dateString) return "-";
 
-    const date = new Date(dateString);
+  const date =
+  new Date(dateString);
 
-    if(isNaN(date)){
-      return dateString;
+  if(isNaN(date)){
+    return dateString;
+  }
+
+  return new Intl.DateTimeFormat(
+    "id-ID",
+    {
+      day:"2-digit",
+      month:"long",
+      year:"numeric",
+      hour:"2-digit",
+      minute:"2-digit"
     }
-
-    return new Intl.DateTimeFormat(
-      "id-ID",
-      {
-        day:"2-digit",
-        month:"long",
-        year:"numeric",
-        hour:"2-digit",
-        minute:"2-digit",
-        second:"2-digit"
-      }
-    ).format(date);
+  ).format(date);
 
 }
 
